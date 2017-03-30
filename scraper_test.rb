@@ -5,7 +5,7 @@ require 'open-uri'
 
 page = Nokogiri::HTML(open("http://www.err.ee/uudised"))   
 
-links = page.css("div.news-row").each do |link|
+links = page.css("div.block-frame div.table-list-row.itemlist div.table-list-cell.news-list-item.article div.news-row").map do |link|
        hrefs = link.css("a")
 
        text = link.css("a")    
