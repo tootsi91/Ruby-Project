@@ -2,14 +2,30 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
    
+
 page = Nokogiri::HTML(open("http://www.err.ee/uudised"))   
 
+links = page.css("div.news-row")
+#time = page.css("div.time-font.news-time")
+#title = page.css("div.news-row a");
+
+links[0..-14].each do |link|
+
+	hrefs = link.css("a href")
+	
+	puts hrefs
+
+	text = link.css("a")	
+
+	time = link.css("div.time-font.news-time")
+
+	tandt = time + text
+
+	puts tandt
+end
 
 
-links = page.css("div.news-row a")#.select{|link| link['div'] == "news-row"}
-links.each{|link| puts "#{link.text}\t#{link['href']}" }
-
-
+#links.each{|link| puts "#{link.text}\t#{link['href']}" }
 
 #puts link.class
 
