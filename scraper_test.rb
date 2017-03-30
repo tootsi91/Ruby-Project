@@ -5,24 +5,39 @@ require 'open-uri'
 
 page = Nokogiri::HTML(open("http://www.err.ee/uudised"))   
 
-links = page.css("div.news-row")
+links = page.css("div.news-row").each do |link|
+       hrefs = link.css("a")
+
+       text = link.css("a")    
+
+       time = link.css("div.time-font.news-time")
+
+       tandt = time + text
+
+       puts tandt.text
+
+       puts hrefs[0]["href"]
+end
+
+
+
 #time = page.css("div.time-font.news-time")
 #title = page.css("div.news-row a");
 
-links[0..-14].each do |link|
+#links[1..-3].each do |link|
 
-	hrefs = link.css("a href")
-	
-	puts hrefs
+#	hrefs = link.css("a")
 
-	text = link.css("a")	
+#	text = link.css("a")	
 
-	time = link.css("div.time-font.news-time")
+#	time = link.css("div.time-font.news-time")
 
-	tandt = time + text
+#	tandt = time + text
 
-	puts tandt
-end
+#	puts tandt.text
+
+#	puts hrefs
+#end
 
 
 #links.each{|link| puts "#{link.text}\t#{link['href']}" }
